@@ -5,7 +5,7 @@ document.body.innerHTML = `
   <p>Example image asset: <img src="${exampleIconUrl}" class="icon" /></p>
 `;
 
-const button = document.createElement('button');
+const button = document.createElement("button");
 button.textContent = "🐈‍⬛";
 
 document.body.appendChild(button);
