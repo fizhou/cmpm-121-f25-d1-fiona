@@ -1,6 +1,15 @@
-button {
+#button {
   background-color: pink;
-  color: white;
+  position: relative;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#upgradeButton {
+  background-color: lightblue;
+  color: black;
   position: relative;
   padding: 12px 24px;
   border: none;
