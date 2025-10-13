@@ -1,18 +1,43 @@
-#button {
-  background-color: pink;
-  position: relative;
-  padding: 12px 24px;
+#main-button {
+  font-size: 2rem;
+  padding: 1rem 3rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 9px;
+  background: pink;
   cursor: pointer;
+  transition: transform 0.1s ease;
 }
 
-#upgradeButton {
-  background-color: lightblue;
-  color: black;
-  position: relative;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 6px;
+#main-button:hover {
+  transform: scale(0.95);
+}
+
+#shop {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  align-items: center;
+}
+
+#shop button {
+  width: 320px;
+  padding: 0.75rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  background-color: lightcoral;
+  border: 2px solid #ccc;
   cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+#shop button:hover:not(:disabled) {
+  background-color: #d6f5d6;
+  transform: scale(1.02);
+}
+
+#shop button:disabled {
+  background-color: #f0f0f0;
+  color: #aaa;
+  cursor: not-allowed;
 }
