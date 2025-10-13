@@ -10,6 +10,7 @@ type Item = {
   cost: number;
   rateIncrease: number;
   countTotal: number;
+  lore: string;
   button?: HTMLButtonElement;
 };
 
@@ -20,6 +21,7 @@ const items: Item[] = [
     cost: 10,
     rateIncrease: 0.1,
     countTotal: 0,
+    lore: "First to emerge from the Cardboard Rift. Always hungry.",
   },
   {
     key: "Purrseus",
@@ -27,6 +29,7 @@ const items: Item[] = [
     cost: 100,
     rateIncrease: 2.0,
     countTotal: 0,
+    lore: "A constellation given flesh during the Great Yarnfall.",
   },
   {
     key: "Voidmew",
@@ -34,6 +37,7 @@ const items: Item[] = [
     cost: 1000,
     rateIncrease: 50.0,
     countTotal: 0,
+    lore: "Forgot to not exist. Emits inverse meows.",
   },
 ];
 
@@ -47,10 +51,14 @@ counterTotal.textContent = "0 MEOWS";
 const rateElement = document.createElement("div"); // current growth rate display
 const counterElement = document.createElement("div"); // per-item count display
 
+const loreSpan = document.createElement("span");
+loreSpan.className = "lore-tooltip";
+
 document.body.appendChild(mainButton);
 document.body.appendChild(counterTotal);
 document.body.appendChild(rateElement);
 document.body.appendChild(counterElement);
+document.body.appendChild(loreSpan);
 
 const shopContainer = document.createElement("div");
 shopContainer.id = "shop-container";
@@ -65,6 +73,13 @@ for (const it of items) {
   itemButton.addEventListener("click", () => handleUpgradePurchase(it));
   it.button = itemButton;
   shopContainer.appendChild(itemButton);
+
+  itemButton.addEventListener("mouseenter", () => {
+    loreSpan.textContent = it.lore;
+  });
+  itemButton.addEventListener("mouseleave", () => {
+    loreSpan.textContent = "";
+  });
 }
 
 function updateUpgradeState() {
