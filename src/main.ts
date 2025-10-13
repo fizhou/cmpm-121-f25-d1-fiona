@@ -95,6 +95,10 @@ function handleUpgradePurchase(it: Item) {
     counter -= it.cost;
     growthRate += it.rateIncrease;
     it.countTotal += 1;
+
+    const nextCost = it.cost * 1.15;
+    it.cost = Math.round(nextCost * 100) / 100;
+
     renderStatus();
     updateUpgradeState();
   }
