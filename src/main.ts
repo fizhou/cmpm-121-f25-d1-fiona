@@ -1,8 +1,8 @@
 import "./style.css";
 
 let previousTime = performance.now();
-let counter: number = 0;
-let growthRate = 0;
+let meows: number = 0;
+let meowsPerSecond = 0;
 
 type Item = {
   key: string;
@@ -14,11 +14,23 @@ type Item = {
 };
 
 const items: Item[] = [
-  { key: "Kitten", name: "Kitten", cost: 10, rateIncrease: 0.1, countTotal: 0 },
-  { key: "Cat", name: "Cat", cost: 100, rateIncrease: 2.0, countTotal: 0 },
   {
-    key: "Fat Cat",
-    name: "Fat Cat",
+    key: "Tabby Scout",
+    name: "Tabby Scout",
+    cost: 10,
+    rateIncrease: 0.1,
+    countTotal: 0,
+  },
+  {
+    key: "Purrseus",
+    name: "Purrseus",
+    cost: 100,
+    rateIncrease: 2.0,
+    countTotal: 0,
+  },
+  {
+    key: "Voidmew",
+    name: "Voidmew",
     cost: 1000,
     rateIncrease: 50.0,
     countTotal: 0,
@@ -27,10 +39,10 @@ const items: Item[] = [
 
 const mainButton = document.createElement("button");
 mainButton.id = "main-button";
-mainButton.textContent = "🐈‍⬛";
+mainButton.textContent = "MEOW🐈‍⬛";
 
 const counterTotal = document.createElement("div");
-counterTotal.textContent = "0 Cats";
+counterTotal.textContent = "0 MEOWS";
 
 const rateElement = document.createElement("div"); // current growth rate display
 const counterElement = document.createElement("div"); // per-item count display
@@ -48,7 +60,7 @@ for (const it of items) {
   const itemButton = document.createElement("button");
   itemButton.id = `item-${it.key}`;
   itemButton.textContent =
-    `${it.name} ($-{it.cost} Cats) | +${it.rateIncrease}/s`;
+    `${it.name} ($-{it.cost} Meows) | +${it.rateIncrease}/s`;
   itemButton.disabled = true;
   itemButton.addEventListener("click", () => handleUpgradePurchase(it));
   it.button = itemButton;
@@ -58,14 +70,14 @@ for (const it of items) {
 function updateUpgradeState() {
   for (const it of items) {
     if (it.button) {
-      it.button.disabled = counter < it.cost;
+      it.button.disabled = meows < it.cost;
     }
   }
 }
 
 function renderStatus() {
-  counterTotal.textContent = `${counter.toFixed(1)} Cats`;
-  rateElement.textContent = `Growth Rate: ${growthRate.toFixed(1)} Cats/s`;
+  counterTotal.textContent = `${meows.toFixed(1)} Meows`;
+  rateElement.textContent = `Growth Rate: ${meowsPerSecond.toFixed(1)} Meows/s`;
 
   counterElement.textContent = items.map((it) => `${it.key}: ${it.countTotal}`)
     .join(" | ");
@@ -73,7 +85,7 @@ function renderStatus() {
   for (const it of items) {
     if (it.button) {
       it.button.textContent =
-        `${it.name} (-${it.cost} Cats) | +${it.rateIncrease}/s`;
+        `${it.name} (-${it.cost} Meows) | +${it.rateIncrease}/s`;
     }
   }
 }
@@ -82,7 +94,7 @@ function update(currentTime: number) {
   const deltaTime = (currentTime - previousTime) / 1000;
   previousTime = currentTime;
 
-  counter += growthRate * deltaTime;
+  meows += meowsPerSecond * deltaTime;
 
   renderStatus();
   updateUpgradeState();
@@ -91,9 +103,9 @@ function update(currentTime: number) {
 }
 
 function handleUpgradePurchase(it: Item) {
-  if (counter >= it.cost) {
-    counter -= it.cost;
-    growthRate += it.rateIncrease;
+  if (meows >= it.cost) {
+    meows -= it.cost;
+    meowsPerSecond += it.rateIncrease;
     it.countTotal += 1;
 
     const nextCost = it.cost * 1.15;
@@ -105,7 +117,7 @@ function handleUpgradePurchase(it: Item) {
 }
 
 function handleButtonClick() {
-  counter += 1;
+  meows += 1;
   renderStatus();
   updateUpgradeState();
 }
