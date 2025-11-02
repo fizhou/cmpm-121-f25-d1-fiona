@@ -1,9 +1,11 @@
 import "./style.css";
 
+// --- Game State Variables ---
 let previousTime = performance.now();
 let meows: number = 0;
 let meowsPerSecond = 0;
 
+// --- Item Definitions ---
 type Item = {
   key: string;
   name: string;
@@ -41,6 +43,7 @@ const items: Item[] = [
   },
 ];
 
+// --- DOM Element Creation ---
 const mainButton = document.createElement("button");
 mainButton.id = "main-button";
 mainButton.textContent = "MEOW🐈‍⬛";
@@ -64,6 +67,7 @@ const shopContainer = document.createElement("div");
 shopContainer.id = "shop-container";
 document.body.appendChild(shopContainer);
 
+// --- UI Event Listeners ---
 for (const it of items) {
   const itemButton = document.createElement("button");
   itemButton.id = `item-${it.key}`;
@@ -82,6 +86,7 @@ for (const it of items) {
   });
 }
 
+// --- Game Loop and Update Logic ---
 function updateUpgradeState() {
   for (const it of items) {
     if (it.button) {
