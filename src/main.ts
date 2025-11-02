@@ -2,8 +2,8 @@ import "./style.css";
 
 // --- Game State Variables ---
 let previousTime = performance.now();
-let meows: number = 0;
-let meowsPerSecond = 0;
+let currency: number = 0;
+let growthRate = 0;
 
 // --- Item Definitions ---
 type Item = {
@@ -104,14 +104,14 @@ function clearLore() {
 function updateUpgradeState() {
   for (const it of items) {
     if (it.button) {
-      it.button.disabled = meows < it.cost;
+      it.button.disabled = currency < it.cost;
     }
   }
 }
 
 function renderStatus() {
-  counterTotal.textContent = `${meows.toFixed(1)} Meows`;
-  rateElement.textContent = `Growth Rate: ${meowsPerSecond.toFixed(1)} Meows/s`;
+  counterTotal.textContent = `${currency.toFixed(1)} Meows`;
+  rateElement.textContent = `Growth Rate: ${growthRate.toFixed(1)} Meows/s`;
 
   counterElement.textContent = items.map((it) => `${it.key}: ${it.countTotal}`)
     .join(" | ");
@@ -128,7 +128,7 @@ function update(currentTime: number) {
   const deltaTime = (currentTime - previousTime) / 1000;
   previousTime = currentTime;
 
-  meows += meowsPerSecond * deltaTime;
+  currency += growthRate * deltaTime;
 
   renderStatus();
   updateUpgradeState();
@@ -137,9 +137,9 @@ function update(currentTime: number) {
 }
 
 function handleUpgradePurchase(it: Item) {
-  if (meows >= it.cost) {
-    meows -= it.cost;
-    meowsPerSecond += it.rateIncrease;
+  if (currency >= it.cost) {
+    currency -= it.cost;
+    growthRate += it.rateIncrease;
     it.countTotal += 1;
 
     const nextCost = it.cost * 1.15;
@@ -151,7 +151,7 @@ function handleUpgradePurchase(it: Item) {
 }
 
 function handleButtonClick() {
-  meows += 1;
+  currency += 1;
   renderStatus();
   updateUpgradeState();
 }
