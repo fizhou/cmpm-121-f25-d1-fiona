@@ -18,7 +18,7 @@ type Item = {
 
 const items: Item[] = [
   {
-    key: "Tabby Scout",
+    key: "Cat",
     name: "Tabby Scout",
     cost: 10,
     rateIncrease: 0.1,
@@ -26,7 +26,7 @@ const items: Item[] = [
     lore: "First to emerge from the Cardboard Rift. Always hungry.",
   },
   {
-    key: "Purrseus",
+    key: "Constellation",
     name: "Purrseus",
     cost: 100,
     rateIncrease: 2.0,
@@ -34,7 +34,7 @@ const items: Item[] = [
     lore: "A constellation given flesh during the Great Yarnfall.",
   },
   {
-    key: "Voidmew",
+    key: "Entity",
     name: "Voidmew",
     cost: 1000,
     rateIncrease: 50.0,
