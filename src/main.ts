@@ -56,6 +56,7 @@ const counterElement = document.createElement("div"); // per-item count display
 
 const loreSpan = document.createElement("span");
 loreSpan.className = "lore-tooltip";
+loreSpan.style.display = "none";
 
 document.body.appendChild(mainButton);
 document.body.appendChild(counterTotal);
@@ -79,11 +80,24 @@ for (const it of items) {
   shopContainer.appendChild(itemButton);
 
   itemButton.addEventListener("mouseenter", () => {
-    loreSpan.textContent = it.lore;
+    showLore(it.lore);
   });
   itemButton.addEventListener("mouseleave", () => {
-    loreSpan.textContent = "";
+    clearLore();
   });
+}
+
+// --- Lore tooltip helpers ---
+function showLore(text: string) {
+  loreSpan.textContent = text;
+  loreSpan.style.display = "inline";
+}
+
+function clearLore() {
+  setTimeout(() => {
+    loreSpan.textContent = "";
+    loreSpan.style.display = "none";
+  }, 150);
 }
 
 // --- Game Loop and Update Logic ---
