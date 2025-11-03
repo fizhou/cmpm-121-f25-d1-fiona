@@ -1,5 +1,9 @@
 import "./style.css";
 
+const heading = document.createElement("h1");
+heading.textContent = "Cat Clicker :3";
+document.body.appendChild(heading);
+
 // --- Game State Variables ---
 let previousTime = performance.now();
 let currency: number = 0;
@@ -46,7 +50,7 @@ const items: Item[] = [
 // --- DOM Element Creation ---
 const mainButton = document.createElement("button");
 mainButton.id = "main-button";
-mainButton.textContent = "MEOW🐈‍⬛";
+mainButton.innerHTML = `<span class="icon">🐈‍⬛</span>`;
 
 const counterTotal = document.createElement("div");
 counterTotal.textContent = "0 MEOWS";

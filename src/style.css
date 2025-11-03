@@ -1,18 +1,66 @@
+h1 {
+  font-family: "Lucida Console", "Courier New", monospace;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 50px;
+  font-size: 50px;
+  color: white;
+}
+
+body {
+  background-image: url("dark.jpeg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0;
+  font-family: "Lucida Console", "Courier New", monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  color: white;
+}
+
 #main-button {
-  font-size: 2rem;
-  padding: 1rem 3rem;
+  width: 180px;
+  height: 180px;
   border: none;
-  border-radius: 9px;
-  background: pink;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    #555 0%,
+    #555 60%,
+    #777 55%,
+    #777 100%
+  );
   cursor: pointer;
-  transition: transform 0.1s ease;
+  transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+#main-button .icon {
+  font-size: 100px;
+  line-height: 1;
+  user-select: none;
+  padding: 0;
 }
 
 #main-button:hover {
-  transform: scale(0.95);
+  transform: translateY(-2px) scale(1.02);
+}
+#main-button:active {
+  transform: translateY(0) scale(0.98);
+}
+#main-button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
 }
 
-#shop {
+#shop-container {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -20,7 +68,7 @@
   align-items: center;
 }
 
-#shop button {
+#shop-container button {
   width: 320px;
   padding: 0.75rem;
   border-radius: 10px;
@@ -31,12 +79,12 @@
   transition: background-color 0.2s, transform 0.1s;
 }
 
-#shop button:hover:not(:disabled) {
+#shop-container button:hover:not(:disabled) {
   background-color: #d6f5d6;
   transform: scale(1.02);
 }
 
-#shop button:disabled {
+#shop-container button:disabled {
   background-color: #f0f0f0;
   color: #aaa;
   cursor: not-allowed;
